@@ -125,6 +125,11 @@ img {
   padding-bottom: 0.3rem;
 }
 
+/* Height */
+.h-1 {
+  height: 100vh;
+}
+
 /* Padding */
 .p {
   padding: 0.5rem;

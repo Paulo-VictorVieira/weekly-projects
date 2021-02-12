@@ -1,7 +1,7 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 
-const Search = ({ setSearchUsers }) => {
+const Search = ({ setSearchUsers, clearUsers, showClear }) => {
   const [inputText, setInputText] = React.useState({ text: '' });
 
   const handleChange = ({ target }) => {
@@ -31,6 +31,11 @@ const Search = ({ setSearchUsers }) => {
           className="btn btn-dark btn-block"
         />
       </form>
+      {showClear && (
+        <button className="btn btn-light btn-block" onClick={clearUsers}>
+          Clear
+        </button>
+      )}
     </div>
   );
 };

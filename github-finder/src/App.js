@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './Components/Layout/Navbar';
 import User from './Components/User/User';
 import axios from 'axios';
+import Search from './Components/User/Search';
 
 function App() {
   const [state, setState] = React.useState({
@@ -25,6 +26,7 @@ function App() {
     <div>
       <Navbar title="Github Finder" icon="fab fa-github" />
       <div className="container">
+        <Search />
         <User users={state.users} loading={state.loading} />
       </div>
     </div>

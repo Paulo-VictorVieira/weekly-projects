@@ -39,11 +39,20 @@ function App() {
     getUser();
   }, [searchUsers]);
 
+  // Clear Users from state
+  const clearUsers = () => {
+    setState({ users: null, loading: false });
+  };
+
   return (
     <div>
       <Navbar title="Github Finder" icon="fab fa-github" />
       <div className="container">
-        <Search setSearchUsers={setSearchUsers} />
+        <Search
+          setSearchUsers={setSearchUsers}
+          clearUsers={clearUsers}
+          showClear={state.users !== null ? true : false}
+        />
         <User users={state.users} loading={state.loading} />
       </div>
     </div>

@@ -1,7 +1,8 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 
-const Search = () => {
-  const [inputText, setInputText] = React.useState('');
+const Search = ({ setSearchUsers }) => {
+  const [inputText, setInputText] = React.useState({ text: '' });
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -10,7 +11,8 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputText.text);
+    setSearchUsers(inputText.text);
+    setInputText({ text: '' });
   };
 
   return (
@@ -20,6 +22,7 @@ const Search = () => {
           type="text"
           name="text"
           placeholder="Search users..."
+          value={inputText.text}
           onChange={handleChange}
         />
         <input
@@ -30,6 +33,10 @@ const Search = () => {
       </form>
     </div>
   );
+};
+
+Search.propTypes = {
+  setSearchUsers: Proptypes.func.isRequired,
 };
 
 export default Search;

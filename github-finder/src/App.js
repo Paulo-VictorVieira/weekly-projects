@@ -1,10 +1,11 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Layout/Navbar';
-import User from './Components/User/User';
 import axios from 'axios';
-import Search from './Components/User/Search';
 import Alert from './Components/Layout/Alert';
+import Home from './Components/Pages/Home';
+import About from './Components/Pages/About';
 
 function App() {
   const [state, setState] = React.useState({
@@ -12,18 +13,6 @@ function App() {
     loading: false,
     alert: null,
   });
-
-  // // Getting Github Users
-  // React.useEffect(() => {
-  //   const get = async () => {
-  //     setState({ loading: true });
-  //     const res = await axios.get(
-  //       `https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENTE_ID}&cliente_secret=${process.env.REACT_APP_GITHUB_CLIENTE_SECRET}`,
-  //     );
-  //     setState({ users: res.data, loading: false });
-  //   };
-  //   get();
-  // }, []);
 
   // Search Github Users
   const [searchUsers, setSearchUsers] = React.useState('');
@@ -55,19 +44,30 @@ function App() {
   };
 
   return (
-    <div>
-      <Navbar title="Github Finder" icon="fab fa-github" />
-      <div className="container">
-        {alert && <Alert alert={state.alert} />}
-        <Search
-          setSearchUsers={setSearchUsers}
-          clearUsers={clearUsers}
-          setAlert={setAlert}
-          showClear={state.users !== null ? true : false}
-        />
-        <User users={state.users} loading={state.loading} />
+    <BrowserRouter>
+      <div>
+        <Navbar title="Github Finder" icon="fab fa-github" />
+        <div className="container">
+          <Alert alert={state.alert} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  users={state.users}
+                  loading={state.loading}
+                  setSearchUsers={setSearchUsers}
+                  clearUsers={clearUsers}
+                  setAlert={setAlert}
+                  showClear={state.users !== null ? true : false}
+                />
+              }
+            />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

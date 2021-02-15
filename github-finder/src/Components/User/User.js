@@ -1,12 +1,27 @@
 import React from 'react';
-import Spinner from '../Layout/Spinner';
-import UserItem from './UserItem';
+import { useParams } from 'react-router-dom';
 
-const User = ({ users, loading }) => {
-  if (loading) return <Spinner />;
+const User = ({ getUser, user, loading }) => {
+  const { login } = useParams();
+
+  React.useEffect(() => {
+    getUser(login);
+  }, [login]);
+
   return (
-    <div className="grid-3">
-      {users && users.map((user) => <UserItem key={user.id} user={user} />)}
+    <div>
+      <p>{user && user.name}</p>
+      <p>{user && user.avatar_url}</p>
+      <p>{user && user.location}</p>
+      <p>{user && user.bio}</p>
+      <p>{user && user.blog}</p>
+      <p>{user && user.login}</p>
+      <p>{user && user.html_url}</p>
+      <p>{user && user.followers}</p>
+      <p>{user && user.following}</p>
+      <p>{user && user.public_repos}</p>
+      <p>{user && user.public_gists}</p>
+      <p>{user && user.hireble}</p>
     </div>
   );
 };

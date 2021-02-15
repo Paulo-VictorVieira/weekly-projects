@@ -1,6 +1,6 @@
 import React from 'react';
 import Search from '../User/Search';
-import User from '../User/User';
+import User from '../User/Users';
 
 const Home = ({
   users,

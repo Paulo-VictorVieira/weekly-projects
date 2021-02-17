@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Spinner from '../Layout/Spinner';
+import Repos from '../Repos/Repos';
 
-const User = ({ getUser, user, loading }) => {
+const User = ({ getUser, getUserRepos, user, repos, loading }) => {
   const { login } = useParams();
 
   React.useEffect(() => {
     getUser(login);
+    getUserRepos(login);
   }, [login]);
 
   if (loading) return <Spinner />;
@@ -80,6 +82,7 @@ const User = ({ getUser, user, loading }) => {
             Public Gists: {user.public_gists}
           </div>
         </div>
+        <Repos repos={repos} />
       </div>
     );
   } else {

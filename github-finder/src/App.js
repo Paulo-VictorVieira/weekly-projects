@@ -12,6 +12,7 @@ function App() {
   const [state, setState] = React.useState({
     users: null,
     user: null,
+    repos: null,
     loading: false,
     alert: null,
   });
@@ -26,7 +27,11 @@ function App() {
         const res = await axios.get(
           `https://api.github.com/search/users?q=${searchUsers}&client_id=${process.env.REACT_APP_GITHUB_CLIENTE_ID}&cliente_secret=${process.env.REACT_APP_GITHUB_CLIENTE_SECRET}`,
         );
-        setState({ users: res.data.items, loading: false, alert: null });
+        setState({
+          users: res.data.items,
+          loading: false,
+          alert: null,
+        });
         setSearchUsers('');
       }
     };
@@ -41,6 +46,17 @@ function App() {
         `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENTE_ID}&cliente_secret=${process.env.REACT_APP_GITHUB_CLIENTE_SECRET}`,
       );
       setState({ user: res.data, loading: false, alert: null });
+    }
+  };
+
+  // Get users repos
+  const getUserRepos = async (username) => {
+    setState({ loading: true, alert: null });
+    if (username) {
+      const res = await axios.get(
+        `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENTE_ID}&cliente_secret=${process.env.REACT_APP_GITHUB_CLIENTE_SECRET}`,
+      );
+      setState({ repos: res.data, loading: false, alert: null });
     }
   };
 
@@ -82,7 +98,9 @@ function App() {
               element={
                 <User
                   getUser={getUser}
+                  getUserRepos={getUserRepos}
                   user={state.user}
+                  repos={state.repos}
                   loading={state.loading}
                 />
               }

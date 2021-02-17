@@ -3,29 +3,33 @@ import { Link, useParams } from 'react-router-dom';
 import Spinner from '../Layout/Spinner';
 import Repos from '../Repos/Repos';
 
-const User = ({ getUser, getUserRepos, user, repos, loading }) => {
+const User = ({ user, getUser, repos, getUserRepos, loading }) => {
   const { login } = useParams();
 
   React.useEffect(() => {
     getUser(login);
     getUserRepos(login);
+
+    // eslint-disable-next-line
   }, [login]);
 
   if (loading) return <Spinner />;
   if (user) {
     return (
       <div>
-        <Link to="/" className="btn btn-light">
-          Back to Search
-        </Link>
-        <p>
-          Hirable:{' '}
-          {user.hireble ? (
-            <i className="fas fa-check text-sucess"></i>
-          ) : (
-            <i className="fas fa-times-circle text-danger"></i>
-          )}
-        </p>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Link to="/" className="btn btn-light">
+            Back to Search
+          </Link>{' '}
+          <p>
+            Hirable:{' '}
+            {user.hireble ? (
+              <i className="fas fa-check text-sucess"></i>
+            ) : (
+              <i className="fas fa-times-circle text-danger"></i>
+            )}
+          </p>
+        </div>
         <div className="card grid-2">
           <div className="all-center">
             <img
@@ -73,8 +77,8 @@ const User = ({ getUser, getUserRepos, user, repos, loading }) => {
           </div>
         </div>
         <div className="card text-center">
-          <div className="badge badge-primary">followers: {user.followers}</div>
-          <div className="badge badge-success">following: {user.followers}</div>
+          <div className="badge badge-primary">Followers: {user.followers}</div>
+          <div className="badge badge-success">Following: {user.following}</div>
           <div className="badge badge-light">
             Public Repos: {user.public_repos}
           </div>
@@ -82,7 +86,7 @@ const User = ({ getUser, getUserRepos, user, repos, loading }) => {
             Public Gists: {user.public_gists}
           </div>
         </div>
-        <Repos repos={repos} />
+        {repos && <Repos repos={repos} />}
       </div>
     );
   } else {

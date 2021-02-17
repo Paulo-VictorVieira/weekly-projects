@@ -1,8 +1,12 @@
 import React from 'react';
 import Spinner from '../Layout/Spinner';
 import UserItem from './UserItem';
+import GithubContext from '../../Context/GithubContext/GithubContext';
 
-const User = ({ users, loading }) => {
+const User = () => {
+  const githubContext = React.useContext(GithubContext);
+  const { users, loading } = githubContext;
+
   if (loading) return <Spinner />;
   return (
     <div className="grid-3">

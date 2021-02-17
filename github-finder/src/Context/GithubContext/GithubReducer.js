@@ -1,7 +1,27 @@
-import React from 'react';
+import {
+  SEARCH_USERS,
+  SET_LOADING,
+  CLEAR_USERS,
+  GET_USER,
+  GET_REPOS,
+} from '../types';
 
-const GithubReducer = () => {
-  return <div></div>;
+// eslint-disable-next-line
+export default (state, action) => {
+  switch (action.type) {
+    case SEARCH_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        loading: false,
+      };
+
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    default:
+      return state;
+  }
 };
-
-export default GithubReducer;

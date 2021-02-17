@@ -8,29 +8,24 @@ import About from './Components/Pages/About';
 import User from './Components/User/User';
 
 import GithubState from './Context/GithubContext/GithubState';
+import AlertState from './Context/Alert/AlertState';
 
 const App = () => {
-  const [alert, setAlert] = React.useState(null);
-
-  // Set Alert
-  const getAlert = (msg, type) => {
-    setAlert({ msg, type });
-    setTimeout(() => setAlert(null), 3000);
-  };
-
   return (
     <GithubState>
-      <BrowserRouter>
-        <Navbar title="Github Finder" icon="fab fa-github" />
-        <div className="container">
-          <Alert alert={alert} />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/user/:login" element={<User />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <AlertState>
+        <BrowserRouter>
+          <Navbar title="Github Finder" icon="fab fa-github" />
+          <div className="container">
+            <Alert />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/user/:login" element={<User />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </AlertState>
     </GithubState>
   );
 };

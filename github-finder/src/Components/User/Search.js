@@ -27,7 +27,7 @@ const Search = () => {
   };
 
   return (
-    <div>
+    <div className="animeLeft">
       <form className="form" onSubmit={handleSubmit}>
         <input
           type="text"

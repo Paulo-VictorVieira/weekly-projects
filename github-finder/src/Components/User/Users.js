@@ -9,7 +9,7 @@ const User = () => {
 
   if (loading) return <Spinner />;
   return (
-    <div className="grid-3">
+    <div className="grid-3 animeLeft">
       {users && users.map((user) => <UserItem key={user.id} user={user} />)}
     </div>
   );

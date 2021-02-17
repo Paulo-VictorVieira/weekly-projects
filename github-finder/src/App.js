@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Navbar from './Components/Layout/Navbar';
 import axios from 'axios';
+import Navbar from './Components/Layout/Navbar';
 import Alert from './Components/Layout/Alert';
 import Home from './Components/Pages/Home';
 import About from './Components/Pages/About';
 import User from './Components/User/User';
+
+import GithubState from './Context/GithubContext/GithubState';
 
 const App = () => {
   const [users, setUsers] = React.useState(null);
@@ -70,42 +72,44 @@ const App = () => {
   };
 
   return (
-    <BrowserRouter>
-      <div>
-        <Navbar title="Github Finder" icon="fab fa-github" />
-        <div className="container">
-          <Alert alert={alert} />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Home
-                  getUsers={getUsers}
-                  users={users}
-                  loading={loading}
-                  clearUsers={clearUsers}
-                  setAlert={getAlert}
-                  showClear={users !== null ? true : false}
-                />
-              }
-            />
-            <Route path="/about" element={<About />} />
-            <Route
-              path="/user/:login"
-              element={
-                <User
-                  getUser={getUser}
-                  getUserRepos={getUserRepos}
-                  user={user}
-                  repos={repos}
-                  loading={loading}
-                />
-              }
-            />
-          </Routes>
+    <GithubState>
+      <BrowserRouter>
+        <div>
+          <Navbar title="Github Finder" icon="fab fa-github" />
+          <div className="container">
+            <Alert alert={alert} />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home
+                    getUsers={getUsers}
+                    users={users}
+                    loading={loading}
+                    clearUsers={clearUsers}
+                    setAlert={getAlert}
+                    showClear={users !== null ? true : false}
+                  />
+                }
+              />
+              <Route path="/about" element={<About />} />
+              <Route
+                path="/user/:login"
+                element={
+                  <User
+                    getUser={getUser}
+                    getUserRepos={getUserRepos}
+                    user={user}
+                    repos={repos}
+                    loading={loading}
+                  />
+                }
+              />
+            </Routes>
+          </div>
         </div>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </GithubState>
   );
 };
 

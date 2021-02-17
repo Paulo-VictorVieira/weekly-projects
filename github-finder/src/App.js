@@ -9,6 +9,7 @@ import User from './Components/User/User';
 
 import GithubState from './Context/GithubContext/GithubState';
 import AlertState from './Context/Alert/AlertState';
+import NotFound from './Components/Pages/NotFound';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/user/:login" element={<User />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </BrowserRouter>

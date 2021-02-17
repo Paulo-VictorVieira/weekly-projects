@@ -36,7 +36,7 @@ const User = () => {
     } = user;
 
     return (
-      <div>
+      <div className="animeLeft">
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Link to="/" className="btn btn-light">
             Back to Search

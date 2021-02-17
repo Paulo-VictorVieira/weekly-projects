@@ -8,68 +8,65 @@ import Home from './Components/Pages/Home';
 import About from './Components/Pages/About';
 import User from './Components/User/User';
 
-function App() {
-  const [state, setState] = React.useState({
-    users: null,
-    user: null,
-    repos: null,
-    loading: false,
-    alert: null,
-  });
+const App = () => {
+  const [users, setUsers] = React.useState(null);
+  const [user, setUser] = React.useState(null);
+  const [repos, setRepos] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
+  const [alert, setAlert] = React.useState(null);
 
   // Search Github Users
-  const [searchUsers, setSearchUsers] = React.useState('');
-
-  React.useEffect(() => {
-    const getUsers = async () => {
-      if (searchUsers !== '') {
-        setState({ loading: true, alert: null });
-        const res = await axios.get(
-          `https://api.github.com/search/users?q=${searchUsers}&client_id=${process.env.REACT_APP_GITHUB_CLIENTE_ID}&cliente_secret=${process.env.REACT_APP_GITHUB_CLIENTE_SECRET}`,
-        );
-        setState({
-          users: res.data.items,
-          loading: false,
-          alert: null,
-        });
-        setSearchUsers('');
-      }
-    };
-    getUsers();
-  }, [searchUsers]);
+  const getUsers = async (text) => {
+    setLoading(true);
+    setAlert(null);
+    const res = await axios.get(
+      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENTE_ID}&cliente_secret=${process.env.REACT_APP_GITHUB_CLIENTE_SECRET}`,
+    );
+    setUsers(res.data.items);
+    setLoading(false);
+    setAlert(null);
+  };
 
   // Get Single Github User
   const getUser = async (username) => {
-    setState({ loading: true, alert: null });
+    setLoading(true);
+    setAlert(null);
     if (username) {
       const res = await axios.get(
         `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENTE_ID}&cliente_secret=${process.env.REACT_APP_GITHUB_CLIENTE_SECRET}`,
       );
-      setState({ user: res.data, loading: false, alert: null });
+      setUser(res.data);
+      setLoading(false);
+      setAlert(null);
     }
   };
 
   // Get users repos
   const getUserRepos = async (username) => {
-    setState({ loading: true, alert: null });
-    if (username) {
-      const res = await axios.get(
-        `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENTE_ID}&cliente_secret=${process.env.REACT_APP_GITHUB_CLIENTE_SECRET}`,
-      );
-      setState({ repos: res.data, loading: false, alert: null });
-    }
+    setLoading(true);
+    setAlert(null);
+
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENTE_ID}&cliente_secret=${process.env.REACT_APP_GITHUB_CLIENTE_SECRET}`,
+    );
+    setRepos(res.data);
+    setLoading(false);
+    setAlert(null);
   };
 
   // Clear Users from state
   const clearUsers = () => {
-    setState({ users: null, loading: false, alert: null });
-    setSearchUsers('');
+    setUsers(null);
+    setUser(null);
+    setRepos(null);
+    setLoading(false);
+    setAlert(null);
   };
 
   // Set Alert
-  const setAlert = (msg, type) => {
-    setState({ alert: { msg, type } });
-    setTimeout(() => setState({ alert: null }), 3000);
+  const getAlert = (msg, type) => {
+    setAlert({ msg, type });
+    setTimeout(() => setAlert(null), 3000);
   };
 
   return (
@@ -77,18 +74,18 @@ function App() {
       <div>
         <Navbar title="Github Finder" icon="fab fa-github" />
         <div className="container">
-          <Alert alert={state.alert} />
+          <Alert alert={alert} />
           <Routes>
             <Route
               path="/"
               element={
                 <Home
-                  users={state.users}
-                  loading={state.loading}
-                  setSearchUsers={setSearchUsers}
+                  getUsers={getUsers}
+                  users={users}
+                  loading={loading}
                   clearUsers={clearUsers}
-                  setAlert={setAlert}
-                  showClear={state.users !== null ? true : false}
+                  setAlert={getAlert}
+                  showClear={users !== null ? true : false}
                 />
               }
             />
@@ -99,9 +96,9 @@ function App() {
                 <User
                   getUser={getUser}
                   getUserRepos={getUserRepos}
-                  user={state.user}
-                  repos={state.repos}
-                  loading={state.loading}
+                  user={user}
+                  repos={repos}
+                  loading={loading}
                 />
               }
             />
@@ -110,6 +107,6 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

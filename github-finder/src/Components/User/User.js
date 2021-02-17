@@ -3,7 +3,12 @@ import { Link, useParams } from 'react-router-dom';
 import Spinner from '../Layout/Spinner';
 import Repos from '../Repos/Repos';
 
-const User = ({ user, getUser, repos, getUserRepos, loading }) => {
+import GithubContext from '../../Context/GithubContext/GithubContext';
+
+const User = () => {
+  const githubContext = React.useContext(GithubContext);
+  const { getUser, user, getUserRepos, repos, loading } = githubContext;
+
   const { login } = useParams();
 
   React.useEffect(() => {
@@ -14,7 +19,22 @@ const User = ({ user, getUser, repos, getUserRepos, loading }) => {
   }, [login]);
 
   if (loading) return <Spinner />;
-  if (user) {
+  if (user && repos) {
+    const {
+      name,
+      company,
+      avatar_url,
+      location,
+      bio,
+      blog,
+      html_url,
+      followers,
+      following,
+      public_repos,
+      public_gists,
+      hireable,
+    } = user;
+
     return (
       <div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -22,8 +42,8 @@ const User = ({ user, getUser, repos, getUserRepos, loading }) => {
             Back to Search
           </Link>{' '}
           <p>
-            Hirable:{' '}
-            {user.hireble ? (
+            Hireable:{' '}
+            {hireable ? (
               <i className="fas fa-check text-sucess"></i>
             ) : (
               <i className="fas fa-times-circle text-danger"></i>
@@ -33,22 +53,22 @@ const User = ({ user, getUser, repos, getUserRepos, loading }) => {
         <div className="card grid-2">
           <div className="all-center">
             <img
-              src={user.avatar_url}
+              src={avatar_url}
               alt="Avatar"
               className="round-img"
               style={{ width: '150px' }}
             />
-            <h1>{user.name}</h1>
-            <p>Location: {user.location}</p>
+            <h1>{name}</h1>
+            <p>Location: {location}</p>
           </div>
           <div className="all-center">
-            {user.bio && (
+            {bio && (
               <>
                 <h3>Bio</h3>
-                <p>{user.bio}</p>
+                <p>{bio}</p>
               </>
             )}
-            <a href={user.html_url} className="btn btn-dark my-1">
+            <a href={html_url} className="btn btn-dark my-1">
               Visit Github Profile
             </a>
             <ul>
@@ -60,16 +80,16 @@ const User = ({ user, getUser, repos, getUserRepos, loading }) => {
                 )}
               </li>
               <li>
-                {user.company && (
+                {company && (
                   <>
-                    <strong>Company: </strong> {user.company}
+                    <strong>Company: </strong> {company}
                   </>
                 )}
               </li>
               <li>
-                {user.blog && (
+                {blog && (
                   <>
-                    <strong>Website: </strong> {user.blog}
+                    <strong>Website: </strong> {blog}
                   </>
                 )}
               </li>
@@ -77,20 +97,16 @@ const User = ({ user, getUser, repos, getUserRepos, loading }) => {
           </div>
         </div>
         <div className="card text-center">
-          <div className="badge badge-primary">Followers: {user.followers}</div>
-          <div className="badge badge-success">Following: {user.following}</div>
-          <div className="badge badge-light">
-            Public Repos: {user.public_repos}
-          </div>
-          <div className="badge badge-dark">
-            Public Gists: {user.public_gists}
-          </div>
+          <div className="badge badge-primary">Followers: {followers}</div>
+          <div className="badge badge-success">Following: {following}</div>
+          <div className="badge badge-light">Public Repos: {public_repos}</div>
+          <div className="badge badge-dark">Public Gists: {public_gists}</div>
         </div>
-        {repos && <Repos repos={repos} />}
+        <Repos repos={repos} />
       </div>
     );
   } else {
-    return <div>Sem usuário</div>;
+    return <h1 className="text-danger">No user</h1>;
   }
 };
 

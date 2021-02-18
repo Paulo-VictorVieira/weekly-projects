@@ -7,7 +7,7 @@ const Contacts = () => {
   const { contacts } = contactContext;
 
   return (
-    <div>
+    <div className="p-1">
       {contacts &&
         contacts.map((contact) => (
           <ContactItem key={contact.id} contact={contact} />

@@ -38,6 +38,7 @@ ul {
 
 img {
   width: 100%;
+  height: 100%;
 }
 
 /* Utilities */
@@ -161,6 +162,10 @@ img {
 /* Height */
 .h-1 {
   height: 80vh;
+}
+.h img {
+  display: block;
+  height: 12rem;
 }
 
 /* Grid */
@@ -317,7 +322,6 @@ img {
   text-decoration: underline;
 }
 
-/* Forms */
 input {
   margin: 1.2rem 0;
 }
@@ -436,6 +440,19 @@ table th {
   to {
     opacity: initial;
     transform: initial;
+  }
+}
+
+.animeSlideLeft {
+  animation: slideInFromLeft 1s ease-in;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 

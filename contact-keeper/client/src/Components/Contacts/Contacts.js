@@ -8,10 +8,13 @@ const Contacts = () => {
 
   return (
     <div className="p-1">
-      {contacts &&
+      {contacts !== null && contacts.length === 0 ? (
+        <h4 className="text-center lead text-dark">Please, add a contact !</h4>
+      ) : (
         contacts.map((contact) => (
           <ContactItem key={contact.id} contact={contact} />
-        ))}
+        ))
+      )}
     </div>
   );
 };

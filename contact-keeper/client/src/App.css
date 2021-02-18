@@ -42,8 +42,8 @@ img {
 
 /* Utilities */
 .container {
-  max-width: 1100px;
-  margin: auto;
+  max-width: 70rem;
+  margin: 0 auto;
   overflow: hidden;
   padding: 0 2rem;
 }
@@ -158,6 +158,11 @@ img {
   margin: 3rem 0;
 }
 
+/* Height */
+.h-1 {
+  height: 80vh;
+}
+
 /* Grid */
 .grid-2 {
   display: grid;
@@ -181,6 +186,11 @@ img {
   display: grid;
   grid-template-columns: 2fr 3fr;
   grid-gap: 2rem;
+}
+
+.all-center-grid {
+  justify-content: center;
+  align-items: center;
 }
 
 .btn {
@@ -291,6 +301,11 @@ img {
 
 .round-img {
   border-radius: 50%;
+}
+
+.active,
+.link:hover {
+  text-decoration: underline;
 }
 
 /* Forms */

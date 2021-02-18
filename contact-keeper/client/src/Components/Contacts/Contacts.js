@@ -7,7 +7,7 @@ const Contacts = () => {
   const { contacts } = contactContext;
 
   return (
-    <div className="p-1">
+    <div className="p-1 h-y">
       {contacts !== null && contacts.length === 0 ? (
         <h4 className="text-center lead text-dark">Please, add a contact !</h4>
       ) : (

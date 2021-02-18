@@ -21,6 +21,8 @@ body {
   line-height: 1.6;
   background-color: #fff;
   color: #333;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 a {
@@ -166,6 +168,11 @@ img {
 .h img {
   display: block;
   height: 12rem;
+}
+
+.h-y {
+  height: 610px;
+  overflow-y: auto;
 }
 
 /* Grid */

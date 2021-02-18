@@ -193,6 +193,14 @@ img {
   align-items: center;
 }
 
+/* Flex */
+
+.flex-space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .btn {
   display: inline-block;
   background: var(--light-color);
@@ -292,6 +300,7 @@ img {
 
 .btn:hover {
   opacity: 0.8;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4);
 }
 
 .bg-light,

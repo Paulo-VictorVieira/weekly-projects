@@ -4,7 +4,7 @@ import ContactContext from '../../Context/Contact/ContactContext';
 
 const ContactForm = () => {
   const contactContext = React.useContext(ContactContext);
-  const { addContact } = contactContext;
+  const { addContact, current, clearCurrent, updateContact } = contactContext;
 
   const [contact, setContact] = React.useState({
     name: '',
@@ -12,6 +12,19 @@ const ContactForm = () => {
     phone: '',
     type: 'personal',
   });
+
+  React.useEffect(() => {
+    if (current !== null) {
+      setContact(current);
+    } else {
+      setContact({
+        name: '',
+        email: '',
+        phone: '',
+        type: 'personal',
+      });
+    }
+  }, [current]);
 
   const { name, email, phone, type } = contact;
 
@@ -23,13 +36,24 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    addContact(contact);
+    if (current === null) {
+      addContact(contact);
+    } else {
+      updateContact(contact);
+    }
+    clearAll();
+  };
+
+  const clearAll = () => {
+    clearCurrent();
     setContact({ name: '', email: '', phone: '', type: 'personal' });
   };
 
   return (
     <form className="form p" onSubmit={handleSubmit}>
-      <h2 className="text-primary">Add Contact</h2>
+      <h2 className="text-primary">
+        {current ? 'Update Contact' : 'Add Contact'}
+      </h2>
       <input
         type="text"
         placeholder="Name"
@@ -72,8 +96,15 @@ const ContactForm = () => {
       <label htmlFor="professional">Professional</label>{' '}
       <div>
         <button type="submit" className="btn btn-primary btn-block">
-          Add a Contact
+          {current ? 'Update Contact' : 'Add Contact'}
         </button>
+      </div>
+      <div>
+        {current && (
+          <button className="btn btn-light btn-block my" onClick={clearAll}>
+            Clear
+          </button>
+        )}
       </div>
       <div className="p-1 m-1 h animeSlideLeft">
         <img src={addUser} alt="Add a User" />

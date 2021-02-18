@@ -4,8 +4,8 @@ import list from '../../Assets/list.svg';
 const About = () => {
   return (
     <div className="grid-2 h-1 all-center-grid animeLeft">
-      <img src={list} alt="List" />
-      <div>
+      <img src={list} alt="List" className="py-2" />
+      <div className="p-2">
         {' '}
         <h1>About this App</h1>
         <p className="my-1">

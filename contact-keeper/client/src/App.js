@@ -4,30 +4,35 @@ import './App.css';
 import Navbar from './Components/Layout/Navbar';
 import About from './Components/Pages/About';
 import Home from './Components/Pages/Home';
+import Register from './Components/Auth/Register';
+import Login from './Components/Auth/Login';
+import Alerts from './Components/Layout/Alerts';
 
 // Context States
 import ContactState from './Context/Contact/ContactState';
 import AuthState from './Context/Auth/AuthState';
-import Register from './Components/Auth/Register';
-import Login from './Components/Auth/Login';
+import AlertState from './Context/Alert/AlertState';
 
 const App = () => {
   return (
     <AuthState>
       <ContactState>
-        <BrowserRouter>
-          <>
-            <Navbar />
-            <div className="container">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-              </Routes>
-            </div>
-          </>
-        </BrowserRouter>
+        <AlertState>
+          <BrowserRouter>
+            <>
+              <Navbar />
+              <div className="container">
+                <Alerts />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                </Routes>
+              </div>
+            </>
+          </BrowserRouter>
+        </AlertState>
       </ContactState>
     </AuthState>
   );

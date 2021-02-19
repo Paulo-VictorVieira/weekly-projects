@@ -8,6 +8,8 @@ import Home from './Components/Pages/Home';
 // Context States
 import ContactState from './Context/Contact/ContactState';
 import AuthState from './Context/Auth/AuthState';
+import Register from './Components/Auth/Register';
+import Login from './Components/Auth/Login';
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
               </Routes>
             </div>
           </>

@@ -3,15 +3,16 @@ import { v4 } from 'uuid';
 import ContactContext from './ContactContext';
 import ContactReducer from './ContactReducer';
 import {
+  GET_CONTACTS,
   ADD_CONTACT,
   DELETE_CONTACT,
+  CLEAR_CONTACTS,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_CONTACT,
   FILTER_CONTACTS,
   CLEAR_FILTER,
-  SET_ALERT,
-  REMOVE_ALERT,
+  CONTACT_ERROR,
 } from '../types';
 
 const ContactState = ({ children }) => {

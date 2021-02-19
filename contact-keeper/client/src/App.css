@@ -381,7 +381,7 @@ button {
 }
 
 .form-container {
-  max-width: 500px;
+  max-width: 32rem;
   margin: 2rem auto;
   overflow: hidden;
   padding: 0 2rem;

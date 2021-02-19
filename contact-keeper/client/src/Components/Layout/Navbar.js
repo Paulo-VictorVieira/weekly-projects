@@ -13,6 +13,18 @@ const Navbar = ({ title, icon }) => {
       </li>
       <li>
         {' '}
+        <NavLink to="/register" end className="link" activeClassName="active">
+          Register
+        </NavLink>
+      </li>
+      <li>
+        {' '}
+        <NavLink to="/login" end className="link" activeClassName="active">
+          Login
+        </NavLink>
+      </li>
+      <li>
+        {' '}
         <NavLink to="/about" className="link" activeClassName="active">
           About
         </NavLink>

@@ -7,22 +7,25 @@ import Home from './Components/Pages/Home';
 
 // Context States
 import ContactState from './Context/Contact/ContactState';
+import AuthState from './Context/Auth/AuthState';
 
 const App = () => {
   return (
-    <ContactState>
-      <BrowserRouter>
-        <>
-          <Navbar />
-          <div className="container">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-            </Routes>
-          </div>
-        </>
-      </BrowserRouter>
-    </ContactState>
+    <AuthState>
+      <ContactState>
+        <BrowserRouter>
+          <>
+            <Navbar />
+            <div className="container">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+              </Routes>
+            </div>
+          </>
+        </BrowserRouter>
+      </ContactState>
+    </AuthState>
   );
 };
 

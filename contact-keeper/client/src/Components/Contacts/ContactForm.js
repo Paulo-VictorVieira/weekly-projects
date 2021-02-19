@@ -1,5 +1,6 @@
 import React from 'react';
 import addUser from '../../Assets/addUser.svg';
+import edit from '../../Assets/edit.svg';
 import ContactContext from '../../Context/Contact/ContactContext';
 
 const ContactForm = () => {
@@ -56,6 +57,7 @@ const ContactForm = () => {
       </h2>
       <input
         type="text"
+        className="input"
         placeholder="Name"
         name="name"
         value={name}
@@ -63,6 +65,7 @@ const ContactForm = () => {
       />
       <input
         type="email"
+        className="input"
         placeholder="Email"
         name="email"
         value={email}
@@ -70,6 +73,7 @@ const ContactForm = () => {
       />
       <input
         type="text"
+        className="input"
         placeholder="Phone"
         name="phone"
         value={phone}
@@ -106,8 +110,11 @@ const ContactForm = () => {
           </button>
         )}
       </div>
-      <div className="p-1 m-1 h animeSlideLeft">
-        <img src={addUser} alt="Add a User" />
+      <div className="p-1 m-1 h">
+        <img
+          src={current ? edit : addUser}
+          alt={current ? 'Update a Contact' : 'Add a Contact'}
+        />
       </div>
     </form>
   );

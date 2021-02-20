@@ -1,21 +1,28 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import AlertContext from '../../Context/Alert/AlertContext';
 import AuthContext from '../../Context/Auth/AuthContext';
 
 const Register = () => {
   const authContext = React.useContext(AuthContext);
-  const { register, error, clearErrors } = authContext;
+  const { register, error, clearErrors, isAuthenticated } = authContext;
 
   const alertContext = React.useContext(AlertContext);
   const { setAlert } = alertContext;
 
+  const navigate = useNavigate();
+
   React.useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+
     if (error !== null) {
       setAlert(error, 'danger');
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [error]);
+  }, [error, isAuthenticated, navigate]);
 
   const [user, setUser] = React.useState({
     name: '',

@@ -69,7 +69,6 @@ const AuthState = ({ children }) => {
 
     try {
       const res = await axios.post('/api/auth', formData, config);
-      console.log(res);
 
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       loadUser();
@@ -80,7 +79,7 @@ const AuthState = ({ children }) => {
 
   // Logout
   const logout = () => {
-    console.log('Logout');
+    dispatch({ type: LOGOUT });
   };
 
   // Clear Erros

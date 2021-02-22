@@ -1,16 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import AuthContext from '../../Context/Auth/AuthContext';
 
 const Navbar = ({ title, icon }) => {
+  const authContext = React.useContext(AuthContext);
+  const { user, isAuthenticated, logout } = authContext;
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  const authLinks = (
+    <>
+      <li>Hello, {user && user.name}</li>
+      <li>
+        <a href="#!" onClick={handleLogout}>
+          <i className="fas fa-sign-out-alt"></i>
+          <span className="hide-sm">Logout</span>
+        </a>
+      </li>
+    </>
+  );
+
   const guestLinks = (
     <>
-      <li>
-        {' '}
-        <NavLink to="/" end className="link" activeClassName="active">
-          Home
-        </NavLink>
-      </li>
       <li>
         {' '}
         <NavLink to="/register" end className="link" activeClassName="active">
@@ -38,7 +52,7 @@ const Navbar = ({ title, icon }) => {
         <i className={icon} /> {title}
       </h1>
       <nav>
-        <ul>{guestLinks}</ul>
+        <ul>{isAuthenticated ? authLinks : guestLinks}</ul>
       </nav>
     </div>
   );

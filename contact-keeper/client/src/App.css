@@ -383,7 +383,6 @@ button {
 .form-container {
   max-width: 32rem;
   margin: 2rem auto;
-  overflow: hidden;
   padding: 0 2rem;
 }
 
@@ -475,6 +474,22 @@ table th {
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+.c-loader {
+  animation: is-rotating 1s infinite;
+  border: 6px solid #e5e5e5;
+  border-radius: 50%;
+  border-top-color: #333;
+  height: 25px;
+  width: 25px;
+  margin: 0 auto;
+}
+
+@keyframes is-rotating {
+  to {
+    transform: rotate(1turn);
   }
 }
 

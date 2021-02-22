@@ -22,17 +22,15 @@ const ContactFilter = () => {
   };
 
   return (
-    contacts.length !== 0 && (
-      <form style={{ marginBottom: '-1rem' }}>
-        <input
-          ref={text}
-          type="text"
-          className="input"
-          placeholder="Filter Contacts..."
-          onChange={handleChange}
-        />
-      </form>
-    )
+    <form style={{ marginBottom: '-1rem' }}>
+      <input
+        ref={text}
+        type="text"
+        className="input"
+        placeholder="Filter Contacts..."
+        onChange={handleChange}
+      />
+    </form>
   );
 };
 

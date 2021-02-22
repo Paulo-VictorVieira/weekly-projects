@@ -1,6 +1,30 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../Context/Auth/AuthContext';
+import AlertContext from '../../Context/Alert/AlertContext';
 
 const Login = () => {
+  const authContext = React.useContext(AuthContext);
+  const { login, error, clearErrors, isAuthenticated } = authContext;
+
+  const alertContext = React.useContext(AlertContext);
+  const { setAlert } = alertContext;
+
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+
+    if (error !== null) {
+      setAlert(error, 'danger');
+      clearErrors();
+    }
+
+    // eslint-disable-next-line
+  }, [navigate, isAuthenticated, error]);
+
   const [user, setUser] = React.useState({
     email: '',
     password: '',
@@ -15,7 +39,15 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login Submit');
+
+    if (email === '' || password === '') {
+      setAlert('Please fill all fields !!', 'danger');
+    } else {
+      login({
+        email,
+        password,
+      });
+    }
   };
 
   return (

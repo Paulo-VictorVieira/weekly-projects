@@ -7,6 +7,7 @@ import Home from './Components/Pages/Home';
 import Register from './Components/Auth/Register';
 import Login from './Components/Auth/Login';
 import Alerts from './Components/Layout/Alerts';
+import ProtectedRoute from './Components/Layout/ProtectedRoute';
 
 // Context States
 import ContactState from './Context/Contact/ContactState';
@@ -24,7 +25,7 @@ const App = () => {
               <div className="container">
                 <Alerts />
                 <Routes>
-                  <Route path="/" element={<Home />} />
+                  <ProtectedRoute path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />

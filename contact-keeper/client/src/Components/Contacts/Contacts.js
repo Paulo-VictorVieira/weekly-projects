@@ -5,13 +5,7 @@ import Spinner from '../Layout/Spinner';
 
 const Contacts = () => {
   const contactContext = React.useContext(ContactContext);
-  const { contacts, filtered, getContacts, loading } = contactContext;
-
-  React.useEffect(() => {
-    getContacts();
-
-    // eslint-disable-next-line
-  }, []);
+  const { contacts, filtered, loading } = contactContext;
 
   if (contacts !== null && contacts.length === 0 && !loading)
     return (

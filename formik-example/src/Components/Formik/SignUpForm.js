@@ -30,8 +30,8 @@ const SignUpForm = ({ addName }) => {
           resetForm(initialValues);
         }}
       >
-        {({ errors }) => (
-          <Form className="flex">
+        {({ values, errors, handleSubmit, handleChange, handleBlur }) => (
+          <Form onSubmit={handleSubmit} className="flex">
             <label htmlFor="firstName" className="text-left">
               First Name
             </label>
@@ -39,6 +39,9 @@ const SignUpForm = ({ addName }) => {
               type="text"
               id="firstName"
               name="firstName"
+              value={values.firstName}
+              onChange={handleChange}
+              onBlur={handleBlur}
               className={errors.firstName ? 'input-error' : 'input'}
             />
             <ErrorMessage
@@ -54,6 +57,9 @@ const SignUpForm = ({ addName }) => {
               type="text"
               id="lastName"
               name="lastName"
+              value={values.lastName}
+              onChange={handleChange}
+              onBlur={handleBlur}
               className={errors.lastName ? 'input-error' : 'input'}
             />
             <ErrorMessage

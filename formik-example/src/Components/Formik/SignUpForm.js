@@ -2,6 +2,18 @@ import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+const MyInput = ({ label, type, field, ...props }) => {
+  const { name } = field;
+
+  return (
+    <>
+      <label htmlFor={name}>{label}</label>
+      <input type={type} id={name} {...field} {...props} />
+      <ErrorMessage component="span" name={name} className="text-center" />
+    </>
+  );
+};
+
 const SignUpForm = ({ addName }) => {
   const initialValues = {
     firstName: '',
@@ -35,38 +47,21 @@ const SignUpForm = ({ addName }) => {
           }, 500);
         }}
       >
-        {({ values, errors, isSubmitting }) => (
+        {({ errors, isSubmitting }) => (
           <Form className="flex">
-            <label htmlFor="firstName" className="text-left">
-              First Name
-            </label>
             <Field
               type="text"
-              id="firstName"
               name="firstName"
-              value={values.firstName}
+              label="First Name"
               className={errors.firstName ? 'input-error' : 'input'}
+              component={MyInput}
             />
-            <ErrorMessage
-              component="span"
-              name="firstName"
-              className="text-center"
-            />
-
-            <label htmlFor="lastName" className="text-left">
-              Last Name
-            </label>
             <Field
               type="text"
-              id="lastName"
               name="lastName"
-              value={values.lastName}
+              label="Last Name"
               className={errors.lastName ? 'input-error' : 'input'}
-            />
-            <ErrorMessage
-              component="span"
-              name="lastName"
-              className="text-center"
+              component={MyInput}
             />
 
             <button

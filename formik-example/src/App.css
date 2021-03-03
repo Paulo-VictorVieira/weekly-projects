@@ -226,6 +226,11 @@ img {
   outline: none;
 }
 
+.btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
 .btn-link {
   background: none;
   padding: 0;

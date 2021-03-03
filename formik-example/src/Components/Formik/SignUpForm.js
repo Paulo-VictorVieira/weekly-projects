@@ -25,13 +25,18 @@ const SignUpForm = ({ addName }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={SignupSchema}
-        onSubmit={({ firstName, lastName }, { resetForm }) => {
-          addName({ firstName, lastName });
-          resetForm(initialValues);
+        onSubmit={({ firstName, lastName }, { resetForm, setSubmitting }) => {
+          setSubmitting(true);
+
+          setTimeout(() => {
+            addName({ firstName, lastName });
+            setSubmitting(false);
+            resetForm(initialValues);
+          }, 500);
         }}
       >
-        {({ values, errors, handleSubmit, handleChange, handleBlur }) => (
-          <Form onSubmit={handleSubmit} className="flex">
+        {({ values, errors, isSubmitting }) => (
+          <Form className="flex">
             <label htmlFor="firstName" className="text-left">
               First Name
             </label>
@@ -40,8 +45,6 @@ const SignUpForm = ({ addName }) => {
               id="firstName"
               name="firstName"
               value={values.firstName}
-              onChange={handleChange}
-              onBlur={handleBlur}
               className={errors.firstName ? 'input-error' : 'input'}
             />
             <ErrorMessage
@@ -58,8 +61,6 @@ const SignUpForm = ({ addName }) => {
               id="lastName"
               name="lastName"
               value={values.lastName}
-              onChange={handleChange}
-              onBlur={handleBlur}
               className={errors.lastName ? 'input-error' : 'input'}
             />
             <ErrorMessage
@@ -68,7 +69,11 @@ const SignUpForm = ({ addName }) => {
               className="text-center"
             />
 
-            <button type="submit" className="btn btn-block btn-primary">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="btn btn-block btn-primary"
+            >
               Submit
             </button>
           </Form>

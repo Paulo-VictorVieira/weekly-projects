@@ -6,6 +6,7 @@ import { BrowserRouter, Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import Navbar from './Components/Layout/Navbar';
 import UseFormikNames from './Components/useFormik/UseFormikNames';
+import MaskedForm from './Components/MaskForm/MaskedForm';
 
 const initialData = [
   {
@@ -26,7 +27,8 @@ const App = () => {
           <Route
             path="/useFormik"
             element={<UseFormikNames initialData={initialData} />}
-          />
+          />{' '}
+          <Route path="/masked" element={<MaskedForm />} />
         </Routes>
       </div>
     </BrowserRouter>

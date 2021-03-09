@@ -28,6 +28,12 @@ const Navbar = ({ title, icon }) => {
               Use Formik
             </NavLink>
           </li>
+          <li>
+            {' '}
+            <NavLink to="/masked" className="link" activeClassName="active">
+              Masked
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>

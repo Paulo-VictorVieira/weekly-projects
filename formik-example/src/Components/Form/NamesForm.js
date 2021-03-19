@@ -1,45 +1,18 @@
 import React from 'react';
+import Input from '../Layout/Input';
+import useForm from '../../Hooks/useForm';
 
 const NamesForm = ({ addName }) => {
-  const [names, setNames] = React.useState({
-    firstName: '',
-    lastName: '',
-  });
-  const [error, setError] = React.useState(null);
-
-  const { firstName, lastName } = names;
-
-  const validateName = (value) => {
-    if (value.length === 0) {
-      setError('Required');
-      return false;
-    } else {
-      setError(null);
-      return true;
-    }
-  };
-
-  const handleChange = ({ target }) => {
-    const { name, value } = target;
-    if (error) validateName(value);
-    setNames({ ...names, [name]: value });
-  };
-
-  const handleBlur = ({ target }) => {
-    validateName(target.value);
-  };
+  const firstName = useForm();
+  const lastName = useForm();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (validateName(firstName, lastName)) {
-      addName(names);
-      setNames({
-        firstName: '',
-        lastName: '',
-      });
-    } else {
-      console.log('Não enviou');
+    if (firstName.validate() && lastName.validate()) {
+      addName({ firstName: firstName.value, lastName: lastName.value });
+      firstName.setValue('');
+      lastName.setValue('');
     }
   };
 
@@ -47,32 +20,9 @@ const NamesForm = ({ addName }) => {
     <div className="form-container bg-light">
       <h2>Form</h2>
       <form className="flex" onSubmit={handleSubmit}>
-        <label htmlFor="firstName" className="text-left">
-          First Name
-        </label>
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          value={firstName}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className={error ? 'input-error' : 'input'}
-        />
-        {error && <span className="text-center">First Name is {error} !</span>}
-        <label htmlFor="lastName" className="text-left">
-          Last Name
-        </label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          value={lastName}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className={error ? 'input-error' : 'input'}
-        />
-        {error && <span className="text-center">Last Name is {error} !</span>}
+        <Input label="First Name" type="text" name="firstname" {...firstName} />
+        <Input label="Last Name" type="text" name="lastName" {...lastName} />
+
         <button type="submit" className="btn btn-block btn-primary">
           Submit
         </button>

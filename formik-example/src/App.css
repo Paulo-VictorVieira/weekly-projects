@@ -22,6 +22,8 @@ body {
   background-color: #fff;
   color: #333;
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+
+  min-height: 100vh;
 }
 
 a {
@@ -163,9 +165,6 @@ img {
 }
 
 /* Height */
-.h-1 {
-  height: 100vh;
-}
 .h img {
   display: block;
   height: 12rem;
@@ -441,24 +440,6 @@ table th {
   margin-bottom: 1rem;
 }
 
-.navbar ul {
-  display: flex;
-}
-
-.navbar a {
-  color: #fff;
-  padding: 0.45rem;
-  margin: 0 0.25rem;
-}
-
-.navbar a:hover {
-  color: var(--light-color);
-}
-
-.navbar .welcome span {
-  margin-right: 0.6rem;
-}
-
 /* Animation (Add After) react-transition-group */
 .item-enter {
   opacity: 0;
@@ -557,5 +538,11 @@ table th {
   .navbar ul {
     text-align: center;
     justify-content: center;
+  }
+}
+
+@media (max-width: 50rem) {
+  .grid-2 {
+    grid-template-columns: 1fr;
   }
 }

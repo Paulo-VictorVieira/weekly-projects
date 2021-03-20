@@ -13,7 +13,7 @@ const Navbar = ({ title, icon }) => {
   }, [pathname]);
 
   return (
-    <div className="navbar bg-primary">
+    <div className={`${styles.navbar} bg-primary`}>
       <h1>
         <i className={icon} /> {title}
       </h1>

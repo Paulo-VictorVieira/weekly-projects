@@ -1,0 +1,78 @@
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.personal {
+  padding: 0px;
+  list-style: none;
+}
+
+.personal h1 {
+  font-size: 3rem;
+
+  margin-bottom: 1rem;
+
+  position: relative;
+
+  z-index: 1;
+}
+
+.personal h1::after {
+  content: '';
+  display: block;
+  width: 1.5rem;
+  height: 2rem;
+  background: #fb1;
+
+  position: absolute;
+  bottom: 5px;
+  left: -5px;
+  z-index: -1;
+
+  border-radius: 0.2rem;
+}
+
+.personal li {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.personal li::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: #ddd;
+  margin-right: 10px;
+}
+
+.profile {
+  font-size: 1.5rem;
+
+  padding: 0.5rem;
+
+  position: relative;
+}
+
+.profile::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  display: block;
+  width: 20%;
+  height: 3px;
+  background: #333;
+  transition: width 0.3s ease;
+}
+
+.profile:hover::after {
+  width: 95%;
+}
+
+@media (max-width: 40rem) {
+  .contact {
+    grid-template-columns: 1fr;
+  }
+}

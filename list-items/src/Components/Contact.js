@@ -9,7 +9,7 @@ const Contact = () => {
       <Head title="List-Items | Contact" description="Contact Me." />
       <img src={foto} alt="Typewriter" />
       <div className={styles.personal}>
-        <h1>Contact Me !</h1>
+        <h1 className="title">Contact Me !</h1>
         <ul>
           <li>Email: pvcunha05@gmail.com</li>
           <li>Location: Brazil</li>

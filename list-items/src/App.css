@@ -12,6 +12,10 @@ body {
   font-family: 'Roboto', sans-serif;
 
   color: #333;
+
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+
+  min-height: 100vh;
 }
 
 img {
@@ -46,6 +50,30 @@ h1 {
   flex: 1;
 }
 
+.title {
+  line-height: 1;
+  font-size: 3rem;
+
+  margin: 1rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.title::after {
+  content: '';
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #fb1;
+
+  position: absolute;
+  bottom: 5px;
+  left: -5px;
+  z-index: -1;
+
+  border-radius: 0.2rem;
+}
+
 /* Animação de Entrada da esqueda para direita */
 .animeLeft {
   transform: translateX(-20px);
@@ -62,6 +90,10 @@ h1 {
 
 /* Animação do "C" do loading */
 .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 20px;
   height: 20px;
   border-radius: 50%;

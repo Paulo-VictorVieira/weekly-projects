@@ -9,31 +9,6 @@
   list-style: none;
 }
 
-.personal h1 {
-  font-size: 3rem;
-
-  margin-bottom: 1rem;
-
-  position: relative;
-
-  z-index: 1;
-}
-
-.personal h1::after {
-  content: '';
-  display: block;
-  width: 1.5rem;
-  height: 2rem;
-  background: #fb1;
-
-  position: absolute;
-  bottom: 5px;
-  left: -5px;
-  z-index: -1;
-
-  border-radius: 0.2rem;
-}
-
 .personal li {
   font-size: 1.2rem;
   margin-bottom: 0.8rem;
@@ -54,6 +29,15 @@
   padding: 0.5rem;
 
   position: relative;
+}
+
+.profile::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+  background: url('../Assets/github.svg') no-repeat center center;
 }
 
 .profile::after {

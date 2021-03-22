@@ -34,3 +34,9 @@
 
   box-shadow: 0 0 0 3px #333;
 }
+
+@media (max-width: 40rem) {
+  .products {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -4,6 +4,10 @@
   gap: 2rem;
 }
 
+.contact img {
+  box-shadow: 0 0 0 3px #aaa;
+}
+
 .personal {
   padding: 0px;
   list-style: none;

@@ -48,20 +48,15 @@ const App = () => {
   }, [todos, status]);
 
   return (
-    <div>
+    <div className="animeLeft">
       <header>To Do List</header>
       <Form
         inputText={inputText}
         setInputText={setInputText}
-        todos={todos}
         setTodos={setTodos}
         setStatus={setStatus}
       />
-      <ToDoList
-        todos={todos}
-        setTodos={setTodos}
-        filteredTodos={filteredTodos}
-      />
+      <ToDoList setTodos={setTodos} filteredTodos={filteredTodos} />
     </div>
   );
 };

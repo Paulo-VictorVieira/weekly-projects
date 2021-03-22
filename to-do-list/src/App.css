@@ -49,6 +49,8 @@ form button {
   color: #ff6f47;
   background: #f7fffe;
 
+  border: 1px solid transparent;
+
   margin-left: 1rem;
 
   cursor: pointer;
@@ -58,7 +60,14 @@ form button {
 
 form button:hover {
   background: #ff6f47;
+  border-color: #fda085;
+  box-shadow: 0 0 0 3px #fda085;
   color: white;
+}
+
+form button:hover,
+form button:focus {
+  outline: none;
 }
 
 .todo-container {
@@ -166,9 +175,45 @@ select {
   pointer-events: none;
 }
 
+.error {
+  text-align: center;
+
+  color: #f31;
+
+  font-size: 1.5rem;
+
+  padding: 1rem;
+}
+
 /* Transition */
 /*
 .select:hover::after {
   transform: scale(1.5);
 }
 */
+
+.animeLeft {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: animeLeft 0.3s forwards;
+}
+
+@keyframes animeLeft {
+  to {
+    opacity: initial;
+    transform: initial;
+  }
+}
+
+.animeSlideLeft {
+  animation: slideInFromLeft 0.3s ease-in;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

@@ -34,12 +34,22 @@ form button {
   font-size: 2rem;
 
   border: none;
+  border: 1px solid transparent;
   background: white;
+}
+
+form input:hover,
+form input:focus {
+  outline: none;
+  border-color: #ff6f47;
+  box-shadow: 0 0 0 3px #fda085;
 }
 
 form button {
   color: #ff6f47;
   background: #f7fffe;
+
+  margin-left: 1rem;
 
   cursor: pointer;
 

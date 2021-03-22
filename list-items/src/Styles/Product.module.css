@@ -6,7 +6,7 @@
 
 .product img {
   margin-bottom: 1rem;
-  box-shadow: 0 0 0 3px #eee;
+  box-shadow: 0 0 0 3px #aaa;
 }
 
 .price {
@@ -20,4 +20,10 @@
   font-size: 1.2rem;
   line-height: 1.2;
   margin-top: 2rem;
+}
+
+@media (max-width: 40rem) {
+  .product {
+    grid-template-columns: 1fr;
+  }
 }

@@ -4,12 +4,12 @@ import styles from '../../Styles/Layout/Navbar.module.css';
 import { NavLink, useLocation } from 'react-router-dom';
 
 const Navbar = ({ title, icon }) => {
-  const [isMenuOpened, setIsMenuOpened] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const { pathname } = useLocation();
 
   React.useEffect(() => {
-    setIsMenuOpened(false);
+    setIsMenuOpen(false);
   }, [pathname]);
 
   return (
@@ -21,12 +21,12 @@ const Navbar = ({ title, icon }) => {
         <button
           aria-label="Menu"
           className={`${styles.mobileButton} ${
-            isMenuOpened && styles.mobileButtonActive
+            isMenuOpen && styles.mobileButtonActive
           }`}
-          onClick={() => setIsMenuOpened(!isMenuOpened)}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
         ></button>
 
-        <nav className={`${styles.nav} ${isMenuOpened && styles.menuOpened}`}>
+        <nav className={`${styles.nav} ${isMenuOpen && styles.menuOpen}`}>
           <ul>
             <li>
               <NavLink to="/" end className="link">

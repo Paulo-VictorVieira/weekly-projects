@@ -51,6 +51,19 @@ export const addTechs = (tech) => async (dispatch) => {
   }
 };
 
+// Delete technician from server
+export const deleteTech = (id) => async (dispatch) => {
+  try {
+    setLoading();
+
+    await axios.delete(`/techs/${id}`);
+
+    dispatch({ type: DELETE_TECH, payload: id });
+  } catch (err) {
+    dispatch({ type: TECHS_ERROR, payload: err.response.statusText });
+  }
+};
+
 // Set loading to true
 export const setLoading = () => {
   return {

@@ -3,9 +3,9 @@
     {
       "id": 1,
       "message": "Changed network card in server 007",
-      "attention": false,
-      "tech": "Sam Smith",
-      "date": "2021-03-24T23:12:52.985Z"
+      "attention": true,
+      "tech": "Paulo Victor",
+      "date": "2021-03-25T14:53:05.767Z"
     },
     {
       "id": 2,
@@ -37,6 +37,11 @@
       "id": 3,
       "firstName": "Sara",
       "lastName": "Wilson"
+    },
+    {
+      "id": 4,
+      "firstName": "Paulo",
+      "lastName": "Victor"
     }
   ]
 }

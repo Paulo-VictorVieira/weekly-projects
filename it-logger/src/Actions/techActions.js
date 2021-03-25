@@ -26,6 +26,31 @@ export const getTechs = () => async (dispatch) => {
   }
 };
 
+// Add technicians to server
+export const addTechs = (tech) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    setLoading();
+
+    const res = await axios.post('/techs', tech, config);
+
+    dispatch({
+      type: ADD_TECH,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: TECHS_ERROR,
+      payload: err.response.statusText,
+    });
+  }
+};
+
 // Set loading to true
 export const setLoading = () => {
   return {

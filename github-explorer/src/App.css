@@ -1,5 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+
+  background: #f0f0f5 url('./assets/githubback.svg') no-repeat 70% top;
+  color: #333;
+
+  min-height: 100vh;
+
+  max-width: 60rem;
+
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.animeLeft {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: animeLeft 0.3s forwards;
+}
+
+@keyframes animeLeft {
+  to {
+    opacity: initial;
+    transform: initial;
+  }
 }

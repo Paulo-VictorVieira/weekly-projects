@@ -1,8 +1,15 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+
+import Router from './routes';
 
 const App = () => {
-  return <div>Github Explorer</div>;
+  return (
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
+  );
 };
 
 export default App;
